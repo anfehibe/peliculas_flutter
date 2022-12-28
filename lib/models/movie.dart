@@ -26,7 +26,7 @@ class Movie {
   }
 
   get fullBackdropPath {
-    if (posterPath != null)
+    if (backdropPath != null)
       return 'https://image.tmdb.org/t/p/w500${backdropPath}';
 
     return 'https://i.stack.imgur.com/GNhxO.png';
@@ -46,6 +46,8 @@ class Movie {
   bool video;
   double voteAverage;
   int voteCount;
+
+  String? heroId;
 
   factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 

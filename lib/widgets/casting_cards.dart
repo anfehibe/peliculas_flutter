@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:peliculas/models/models.dart';
+import 'package:peliculas/providers/movies_provider.dart';
+import 'package:provider/provider.dart';
 
 class CastingCards extends StatelessWidget {
   final int movieId;
@@ -7,21 +10,39 @@ class CastingCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 180,
-      margin: const EdgeInsets.only(bottom: 30),
-      child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
-        itemCount: 10,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => _CastCard(),
-      ),
+    final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
+
+    return FutureBuilder(
+      future: moviesProvider.getMovieCast(movieId),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Container(
+            constraints: BoxConstraints(maxWidth: 150),
+            height: 180,
+            child: const CupertinoActivityIndicator(),
+          );
+        }
+        final cast = snapshot.data!;
+        return Container(
+          width: double.infinity,
+          height: 180,
+          margin: const EdgeInsets.only(bottom: 30),
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: 10,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => _CastCard(actor: cast[index]),
+          ),
+        );
+      },
     );
   }
 }
 
 class _CastCard extends StatelessWidget {
+  final Cast actor;
+
+  const _CastCard({super.key, required this.actor});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +54,7 @@ class _CastCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
               placeholder: AssetImage('assets/loading.gif'),
-              image: NetworkImage('https://via.placeholder.com/150x300'),
+              image: NetworkImage(actor.fullProfilePath),
               fit: BoxFit.cover,
               height: 140,
               width: 100,
@@ -43,7 +64,7 @@ class _CastCard extends StatelessWidget {
             height: 5,
           ),
           Text(
-            'NOmbre del actor en la pelicula',
+            actor.name,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
