@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/models/models.dart';
 
 class CastingCards extends StatelessWidget {
-  const CastingCards({super.key});
+  final int movieId;
+  const CastingCards({super.key, required this.movieId});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 180,
-      margin: EdgeInsets.only(bottom: 30),
+      margin: const EdgeInsets.only(bottom: 30),
       child: ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount: 10,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => _CastCard(),
