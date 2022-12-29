@@ -14,13 +14,13 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Peliculas en cine'),
+          title: const Text('Peliculas en cine'),
           elevation: 0,
           actions: [
             IconButton(
               onPressed: () =>
                   showSearch(context: context, delegate: MovieSearchDelegate()),
-              icon: Icon(Icons.search_outlined),
+              icon: const Icon(Icons.search_outlined),
             )
           ],
         ),

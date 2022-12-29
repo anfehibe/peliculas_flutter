@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:peliculas/models/models.dart';
 import 'package:peliculas/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +16,7 @@ class CastingCards extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Container(
-            constraints: BoxConstraints(maxWidth: 150),
+            constraints: const BoxConstraints(maxWidth: 150),
             height: 180,
             child: const CupertinoActivityIndicator(),
           );
@@ -29,7 +28,7 @@ class CastingCards extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 30),
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
-            itemCount: 10,
+            itemCount: cast.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => _CastCard(actor: cast[index]),
           ),
@@ -42,25 +41,25 @@ class CastingCards extends StatelessWidget {
 class _CastCard extends StatelessWidget {
   final Cast actor;
 
-  const _CastCard({super.key, required this.actor});
+  const _CastCard({required this.actor});
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       width: 110,
       child: Column(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: FadeInImage(
-              placeholder: AssetImage('assets/loading.gif'),
+              placeholder: const AssetImage('assets/loading.gif'),
               image: NetworkImage(actor.fullProfilePath),
               fit: BoxFit.cover,
               height: 140,
               width: 100,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(

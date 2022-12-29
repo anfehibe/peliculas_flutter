@@ -37,7 +37,7 @@ class _Overview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Text(
         movie.overview,
         textAlign: TextAlign.justify,
@@ -59,8 +59,8 @@ class _PosterAndTitle extends StatelessWidget {
     final texTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
           Hero(
@@ -68,7 +68,7 @@ class _PosterAndTitle extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: FadeInImage(
-                placeholder: AssetImage('assets/loading.gif'),
+                placeholder: const AssetImage('assets/loading.gif'),
                 image: NetworkImage(movie.fullPosterImg),
                 fit: BoxFit.cover,
                 height: 150,
@@ -133,20 +133,20 @@ class _CustomAppbar extends StatelessWidget {
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
-        titlePadding: EdgeInsets.all(0),
+        titlePadding: const EdgeInsets.all(0),
         title: Container(
           width: double.infinity,
           alignment: Alignment.bottomCenter,
           color: Colors.black12,
-          padding: EdgeInsets.only(bottom: 10, left: 20, right: 20),
+          padding: const EdgeInsets.only(bottom: 10, left: 20, right: 20),
           child: Text(
             movie.title,
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
             textAlign: TextAlign.center,
           ),
         ),
         background: FadeInImage(
-          placeholder: AssetImage('assets/loading.gif'),
+          placeholder: const AssetImage('assets/loading.gif'),
           image: NetworkImage(movie.fullBackdropPath),
           fit: BoxFit.cover,
         ),

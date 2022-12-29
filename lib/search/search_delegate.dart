@@ -25,7 +25,7 @@ class MovieSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Text('buildResults');
+    return const Text('buildResults');
   }
 
   Widget _emptyContainer() {
@@ -66,7 +66,6 @@ class MovieSearchDelegate extends SearchDelegate {
 class _MovieItem extends StatelessWidget {
   final Movie movie;
   const _MovieItem({
-    super.key,
     required this.movie,
   });
 
@@ -75,7 +74,7 @@ class _MovieItem extends StatelessWidget {
     movie.heroId = 'search-${movie.id}';
     return ListTile(
       leading: FadeInImage(
-        placeholder: AssetImage('assets/no-image.jpg'),
+        placeholder: const AssetImage('assets/no-image.jpg'),
         image: NetworkImage(movie.fullPosterImg),
         width: 50,
         fit: BoxFit.contain,

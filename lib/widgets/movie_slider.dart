@@ -18,7 +18,7 @@ class MovieSlider extends StatefulWidget {
 }
 
 class _MovieSliderState extends State<MovieSlider> {
-  final ScrollController scrollController = new ScrollController();
+  final ScrollController scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
@@ -33,13 +33,12 @@ class _MovieSliderState extends State<MovieSlider> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 260,
       child: Column(
@@ -47,10 +46,11 @@ class _MovieSliderState extends State<MovieSlider> {
         children: [
           if (widget.title != null)
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 widget.title!,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
           const SizedBox(
